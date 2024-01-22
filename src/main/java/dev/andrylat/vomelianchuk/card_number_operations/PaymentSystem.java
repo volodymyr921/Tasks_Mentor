@@ -1,4 +1,4 @@
-package dev.andrylat.vomelianchuk.CardNumberOperations.enums;
+package dev.andrylat.vomelianchuk.card_number_operations;
 
 import java.util.Optional;
 
@@ -21,14 +21,16 @@ public enum PaymentSystem {
     }
 
     public static Optional<PaymentSystem> detectPaymentSystem(String cardNumber) {
-        if (cardNumber == null) return Optional.empty();
-        for (PaymentSystem paymentSystem : PaymentSystem.values()) {
-            for (int prefix : paymentSystem.getPrefixes()) {
-                if (cardNumber.startsWith(String.valueOf(prefix))) {
-                    return Optional.of(paymentSystem);
+        if (cardNumber != null) {
+            for (PaymentSystem paymentSystem : PaymentSystem.values()) {
+                for (int prefix : paymentSystem.getPrefixes()) {
+                    if (cardNumber.startsWith(String.valueOf(prefix))) {
+                        return Optional.of(paymentSystem);
+                    }
                 }
             }
         }
         return Optional.empty();
     }
+
 }

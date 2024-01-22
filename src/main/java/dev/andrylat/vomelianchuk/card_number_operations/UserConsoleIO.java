@@ -1,8 +1,8 @@
-package dev.andrylat.vomelianchuk.CardNumberOperations;
+package dev.andrylat.vomelianchuk.card_number_operations;
 
 import java.util.Scanner;
 
-public class ConsoleUtils {
+public class UserConsoleIO {
     public String readCardNumber() {
         promptToTheUser();
         Scanner scanner = new Scanner(System.in);
@@ -12,4 +12,5 @@ public class ConsoleUtils {
     private void promptToTheUser() {
         System.out.println("Hello! Enter card number for validation:");
     }
+
 }
