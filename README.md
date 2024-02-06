@@ -12,13 +12,13 @@ The project comprises several classes:
 - Retrieves a card number from the user through the `ConsoleUtils` class.
 - Initiates the validation process using the `CardNumberProcess` class.
 
-### `CardNumberProcess`
+### `CardNumberValidator`
 
 - Validates the provided credit card number for length, digit-only content, and determines the associated payment system.
 - Contains error messages for different validation scenarios.
 - Displays the validation result along with any encountered errors.
 
-### `ConsoleUtils`
+### `UserConsoleIO`
 
 - Obtains a card number from the user for validation.
 - Displays a prompt to the user to enter a card number.
@@ -27,14 +27,12 @@ The project comprises several classes:
 
 - Enumerates various payment systems along with their respective prefixes for detection.
 
-### `PaymentSystem` Enum
-
-- Lists the various errors with their corresponding descriptions.
 
 ## Important Logic
 
-- The `CardNumberProcess` class performs validations for card number length and content.
+- The `CardNumberValidator` class performs validations for card number length and content.
 - The `PaymentSystem` enum helps in detecting the payment system associated with the card number.
+- The `LuhnAlgorithm` class checks with the Luhn algorithm whether the last digit of the card number is correct
 
 ## Open Questions
 
