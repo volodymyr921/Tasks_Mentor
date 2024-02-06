@@ -10,6 +10,8 @@ public enum PaymentSystem {
     JCB(35),
     AMERICAN_EXPRESS(34, 37);
 
+    private static final String ERROR_CANNOT_DETERMINE_PAYMENT_SYSTEM = "Payment System can't be determine";
+
     private final int[] prefixes;
 
     PaymentSystem(int... prefixes) {
@@ -20,7 +22,16 @@ public enum PaymentSystem {
         return prefixes;
     }
 
-    public static Optional<PaymentSystem> detectPaymentSystem(String cardNumber) {
+    public static PaymentSystem determine(String cardNumber) throws WrongPaymentSystemException {
+        Optional<PaymentSystem> paymentSystemOptional = PaymentSystem.of(cardNumber);
+        if (paymentSystemOptional.isPresent()) {
+            return paymentSystemOptional.get();
+        } else {
+            throw new WrongPaymentSystemException(ERROR_CANNOT_DETERMINE_PAYMENT_SYSTEM);
+        }
+    }
+
+    private static Optional<PaymentSystem> of(String cardNumber) {
         if (cardNumber != null) {
             for (PaymentSystem paymentSystem : PaymentSystem.values()) {
                 for (int prefix : paymentSystem.getPrefixes()) {

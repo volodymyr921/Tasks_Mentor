@@ -1,29 +1,24 @@
 package dev.andrylat.vomelianchuk.card_number_operations;
 
+import java.util.List;
+
+
+
 public class LuhnAlgorithm {
-    private final String cardNumber;
+    private static final String ERROR_CANNOT_DETERMINE_PAYMENT_SYSTEM = "Payment System can't be determine";
 
-    public LuhnAlgorithm(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
-
-    public boolean checkDigit(ExceptionValidation errors) throws ExceptionValidation {
-        if (cardNumber.isEmpty()) {
-            throw new ExceptionValidation(ExceptionValidation.ERROR_CANNOT_DETERMINE_PAYMENT_SYSTEM, errors.getErrorsMessage());
-        }
-
-        int firstNumber = calculateFirstNumber();
-        int secondNumber = calculateSecondNumber();
+    public void checkLastNumber(String cardNumber, List<String> errors) {
+        int firstNumber = calculateFirstNumber(cardNumber);
+        int secondNumber = calculateSecondNumber(cardNumber);
         int lastDigit = calculateLastDigit(firstNumber, secondNumber);
 
-        if (lastDigit == Character.getNumericValue(cardNumber.charAt(cardNumber.length() - 1))) {
-            return true;
-        } else {
-            throw new ExceptionValidation(ExceptionValidation.ERROR_CANNOT_DETERMINE_PAYMENT_SYSTEM, errors.getErrorsMessage());
+        if (!(isValidLastDigit(cardNumber, lastDigit))) {
+            errors.add(ERROR_CANNOT_DETERMINE_PAYMENT_SYSTEM);
+            throw new CardValidationException(errors);
         }
     }
 
-    private int calculateFirstNumber() {
+    private int calculateFirstNumber(String cardNumber) {
         int sum = 0;
 
         for (int i = 0; i < cardNumber.length() - 1; i += 2) {
@@ -34,7 +29,7 @@ public class LuhnAlgorithm {
         return sum;
     }
 
-    private int calculateSecondNumber() {
+    private int calculateSecondNumber(String cardNumber) {
         int sum = 0;
 
         for (int i = 1; i < cardNumber.length() - 1; i += 2) {
@@ -52,24 +47,26 @@ public class LuhnAlgorithm {
         return 10 - remainder;
     }
 
-
-
     private int calculateDigit(char digitChar) {
         int number = Character.getNumericValue(digitChar) * 2;
 
-        if (isTwoDigitNumber(number)) {
+        if (isNotSingleDigitNumber(number)) {
             return amountsOfUnits(number) + 1;
         } else {
             return number;
         }
     }
 
-    private boolean isTwoDigitNumber(int number) {
+    private boolean isNotSingleDigitNumber(int number) {
         return number >= 10;
     }
 
     private int amountsOfUnits(int number) {
         return number % 10;
+    }
+
+    private boolean isValidLastDigit(String cardNumber, int lastDigit) {
+        return lastDigit == Character.getNumericValue(cardNumber.charAt(cardNumber.length() - 1));
     }
 
 }
