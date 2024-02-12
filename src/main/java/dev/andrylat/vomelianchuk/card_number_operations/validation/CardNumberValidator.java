@@ -1,4 +1,7 @@
-package dev.andrylat.vomelianchuk.card_number_operations;
+package dev.andrylat.vomelianchuk.card_number_operations.validation;
+
+import dev.andrylat.vomelianchuk.card_number_operations.enums.PaymentSystem;
+import dev.andrylat.vomelianchuk.card_number_operations.exceptions.CardValidationException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,25 +13,27 @@ public class CardNumberValidator {
     private static final String ERROR_LENGTH_CARD = "Length should be 16 symbols";
     private static final String ERROR_ONLY_DIGITS = "Number should contain only digits";
 
-    private final List<String> errors = new ArrayList<>();
+    public PaymentSystem validate(String cardNumber) throws CardValidationException {
+        List<String> errors = new ArrayList<>();
 
-    public void validate(String cardNumber) throws CardValidationException {
-        if (cardNumber != null) {
-            cardNumber = transform(cardNumber);
-            checkLengthCardNumber(cardNumber);
-            checkSymbolsCardNumber(cardNumber);
-            new LuhnAlgorithm().checkLastNumber(cardNumber, errors);
-        } else {
+        if (cardNumber == null) {
             errors.add(ERROR_NULL_CARD_NUMBER);
             throw new CardValidationException(errors);
         }
+
+        cardNumber = removeSeparators(cardNumber);
+        checkLengthCardNumber(cardNumber, errors);
+        checkSymbolsCardNumber(cardNumber, errors);
+        new LuhnAlgorithm().checkLastNumber(cardNumber, errors);
+
+        return PaymentSystem.determine(cardNumber);
     }
 
-    private String transform(String cardNumber) {
+    private String removeSeparators(String cardNumber) {
         return cardNumber.replaceAll(HIATUS_SEPARATOR, "");
     }
 
-    private void checkLengthCardNumber(String cardNumber) {
+    private void checkLengthCardNumber(String cardNumber, List<String> errors) {
         if (cardNumber.length() != LENGTH_CARD_NUMBER) {
             errors.add(ERROR_LENGTH_CARD);
             if ((cardNumber.isEmpty())) {
@@ -37,14 +42,12 @@ public class CardNumberValidator {
         }
     }
 
-    private void checkSymbolsCardNumber(String cardNumber) {
-        int i = 0;
-        while (i < cardNumber.length()) {
+    private void checkSymbolsCardNumber(String cardNumber, List<String> errors) {
+        for (int i = 0; i <cardNumber.length(); i++) {
             if (Character.isLetter(cardNumber.charAt(i))) {
                 errors.add(ERROR_ONLY_DIGITS);
                 break;
             }
-            i++;
         }
     }
 

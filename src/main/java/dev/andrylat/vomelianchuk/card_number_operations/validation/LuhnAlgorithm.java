@@ -1,11 +1,13 @@
-package dev.andrylat.vomelianchuk.card_number_operations;
+package dev.andrylat.vomelianchuk.card_number_operations.validation;
+
+import dev.andrylat.vomelianchuk.card_number_operations.exceptions.CardValidationException;
 
 import java.util.List;
 
 
 
 public class LuhnAlgorithm {
-    private static final String ERROR_CANNOT_DETERMINE_PAYMENT_SYSTEM = "Payment System can't be determine";
+    private static final String ERROR_INCORRECT_LUHN_NUMBER = "Incorrect Luhn checksum";
 
     public void checkLastNumber(String cardNumber, List<String> errors) {
         int firstNumber = calculateFirstNumber(cardNumber);
@@ -13,7 +15,7 @@ public class LuhnAlgorithm {
         int lastDigit = calculateLastDigit(firstNumber, secondNumber);
 
         if (!(isValidLastDigit(cardNumber, lastDigit))) {
-            errors.add(ERROR_CANNOT_DETERMINE_PAYMENT_SYSTEM);
+            errors.add(ERROR_INCORRECT_LUHN_NUMBER);
             throw new CardValidationException(errors);
         }
     }

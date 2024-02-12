@@ -1,4 +1,6 @@
-package dev.andrylat.vomelianchuk.card_number_operations;
+package dev.andrylat.vomelianchuk.card_number_operations.enums;
+
+import dev.andrylat.vomelianchuk.card_number_operations.exceptions.WrongPaymentSystemException;
 
 import java.util.Optional;
 
@@ -22,7 +24,7 @@ public enum PaymentSystem {
         return prefixes;
     }
 
-    public static PaymentSystem determine(String cardNumber) throws WrongPaymentSystemException {
+    public static PaymentSystem determine(String cardNumber) {
         Optional<PaymentSystem> paymentSystemOptional = PaymentSystem.of(cardNumber);
         if (paymentSystemOptional.isPresent()) {
             return paymentSystemOptional.get();

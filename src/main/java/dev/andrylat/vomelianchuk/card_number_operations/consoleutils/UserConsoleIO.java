@@ -1,4 +1,8 @@
-package dev.andrylat.vomelianchuk.card_number_operations;
+package dev.andrylat.vomelianchuk.card_number_operations.consoleutils;
+
+import dev.andrylat.vomelianchuk.card_number_operations.enums.PaymentSystem;
+import dev.andrylat.vomelianchuk.card_number_operations.exceptions.CardValidationException;
+import dev.andrylat.vomelianchuk.card_number_operations.exceptions.WrongPaymentSystemException;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -30,19 +34,19 @@ public class UserConsoleIO {
         output.println(HELLO_USER);
     }
 
-    public static void printPaymentSystem(PaymentSystem paymentSystem) {
+    public void printPaymentSystem(PaymentSystem paymentSystem) {
         output.println(getPaymentSystemDescription(paymentSystem));
     }
 
-    private static String getPaymentSystemDescription(PaymentSystem paymentSystem) {
+    private String getPaymentSystemDescription(PaymentSystem paymentSystem) {
         return VALID_CARD_TEXT_BEGIN + paymentSystem + VALID_CARD_TEXT_END;
     }
 
-    public static void printErrors(RuntimeException e) {
+    public void printErrors(RuntimeException e) {
         output.println(getErrorsDescription(e));
     }
 
-    private static String getErrorsDescription(RuntimeException e) {
+    private String getErrorsDescription(RuntimeException e) {
         if (e instanceof CardValidationException) {
             return getErrorsCardInvalid((CardValidationException) e);
         } else {
@@ -50,7 +54,7 @@ public class UserConsoleIO {
         }
     }
 
-    private static String getErrorsCardInvalid(CardValidationException e) {
+    private String getErrorsCardInvalid(CardValidationException e) {
         StringBuilder descriptionErrors = new StringBuilder(INVALID_CARD_TEXT_BEGIN);
 
         List<String> errors = e.getErrorsMessage();

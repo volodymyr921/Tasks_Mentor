@@ -1,4 +1,4 @@
-package dev.andrylat.vomelianchuk.card_number_operations;
+package dev.andrylat.vomelianchuk.card_number_operations.exceptions;
 
 import java.util.List;
 
@@ -11,14 +11,6 @@ public class CardValidationException extends RuntimeException {
 
     public List<String> getErrorsMessage() {
         return errorsMessage;
-    }
-
-    public String getErrorsMessagesInLine() {
-        StringBuilder errorsLine = new StringBuilder();
-        for (String error : errorsMessage) {
-            errorsLine.append(error);
-        }
-        return errorsLine.toString();
     }
 
 }
