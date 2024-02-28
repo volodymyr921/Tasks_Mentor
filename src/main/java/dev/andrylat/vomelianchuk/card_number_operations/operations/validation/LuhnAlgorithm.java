@@ -1,10 +1,8 @@
-package dev.andrylat.vomelianchuk.card_number_operations.validation;
+package dev.andrylat.vomelianchuk.card_number_operations.operations.validation;
 
 import dev.andrylat.vomelianchuk.card_number_operations.exceptions.CardValidationException;
 
 import java.util.List;
-
-
 
 public class LuhnAlgorithm {
     private static final String ERROR_INCORRECT_LUHN_NUMBER = "Incorrect Luhn checksum";

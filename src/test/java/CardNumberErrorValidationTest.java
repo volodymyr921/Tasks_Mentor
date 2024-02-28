@@ -1,4 +1,4 @@
-import dev.andrylat.vomelianchuk.card_number_operations.validation.CardNumberValidator;
+import dev.andrylat.vomelianchuk.card_number_operations.operations.validation.CardNumberValidator;
 import dev.andrylat.vomelianchuk.card_number_operations.exceptions.CardValidationException;
 
 import dev.andrylat.vomelianchuk.card_number_operations.enums.PaymentSystem;
