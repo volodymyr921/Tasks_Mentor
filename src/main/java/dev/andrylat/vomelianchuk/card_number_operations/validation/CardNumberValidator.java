@@ -13,7 +13,7 @@ public class CardNumberValidator {
     private static final String ERROR_LENGTH_CARD = "Length should be 16 symbols";
     private static final String ERROR_ONLY_DIGITS = "Number should contain only digits";
 
-    public PaymentSystem validate(String cardNumber) throws CardValidationException {
+    public PaymentSystem validate(String cardNumber) {
         List<String> errors = new ArrayList<>();
 
         if (cardNumber == null) {
