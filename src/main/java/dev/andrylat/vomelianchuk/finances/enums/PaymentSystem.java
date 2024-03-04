@@ -1,6 +1,6 @@
-package dev.andrylat.vomelianchuk.card_number_operations.enums;
+package dev.andrylat.vomelianchuk.finances.enums;
 
-import dev.andrylat.vomelianchuk.card_number_operations.exceptions.WrongPaymentSystemException;
+import dev.andrylat.vomelianchuk.finances.exceptions.WrongPaymentSystemException;
 
 import java.util.Optional;
 

@@ -1,8 +1,8 @@
-import dev.andrylat.vomelianchuk.card_number_operations.operations.validation.CardNumberValidator;
-import dev.andrylat.vomelianchuk.card_number_operations.exceptions.CardValidationException;
+import dev.andrylat.vomelianchuk.finances.card_number_validation.CardNumberValidator;
+import dev.andrylat.vomelianchuk.finances.exceptions.CardValidationException;
 
-import dev.andrylat.vomelianchuk.card_number_operations.enums.PaymentSystem;
-import dev.andrylat.vomelianchuk.card_number_operations.exceptions.WrongPaymentSystemException;
+import dev.andrylat.vomelianchuk.finances.enums.PaymentSystem;
+import dev.andrylat.vomelianchuk.finances.exceptions.WrongPaymentSystemException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
