@@ -1,5 +1,5 @@
-import dev.andrylat.vomelianchuk.card_number_operations.enums.PaymentSystem;
-import dev.andrylat.vomelianchuk.card_number_operations.validation.CardNumberValidator;
+import dev.andrylat.vomelianchuk.finances.cardnumbervalidator.enums.PaymentSystem;
+import dev.andrylat.vomelianchuk.finances.cardnumbervalidator.validation.CardNumberValidator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

@@ -1,4 +1,4 @@
-package dev.andrylat.vomelianchuk.card_number_operations.exceptions;
+package dev.andrylat.vomelianchuk.finances.cardnumbervalidator.exceptions;
 
 import java.util.List;
 
