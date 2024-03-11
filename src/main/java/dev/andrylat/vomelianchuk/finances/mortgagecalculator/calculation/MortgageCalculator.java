@@ -1,6 +1,6 @@
-package dev.andrylat.vomelianchuk.finances.operations;
+package dev.andrylat.vomelianchuk.finances.mortgagecalculator.calculation;
 
-import dev.andrylat.vomelianchuk.finances.exceptions.DataMortgageCalculatorException;
+import dev.andrylat.vomelianchuk.finances.mortgagecalculator.exceptions.DataMortgageCalculatorException;
 
 import java.util.List;
 

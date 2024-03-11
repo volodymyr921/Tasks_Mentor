@@ -1,8 +1,7 @@
-package dev.andrylat.vomelianchuk.finances.dialog;
+package dev.andrylat.vomelianchuk.finances.common;
 
 public class UnsupportedDialog implements Dialog {
     static final String INCORRECT_ACTION_NUMBER = "The entered number does not match any action";
-    static final String DESCRIPTION_ACTION = "Unsupported Dialog";
 
     @Override
     public void start() {
@@ -11,7 +10,7 @@ public class UnsupportedDialog implements Dialog {
 
     @Override
     public String getDescription() {
-        return DESCRIPTION_ACTION;
+        throw new UnsupportedOperationException();
     }
 
 }

@@ -1,15 +1,16 @@
-package dev.andrylat.vomelianchuk.finances.consoleutils;
+package dev.andrylat.vomelianchuk.finances.cardnumbervalidator.consoleio;
 
-import dev.andrylat.vomelianchuk.finances.enums.PaymentSystem;
-import dev.andrylat.vomelianchuk.finances.exceptions.CardValidationException;
-import dev.andrylat.vomelianchuk.finances.exceptions.WrongPaymentSystemException;
+import dev.andrylat.vomelianchuk.finances.common.ConsoleIO;
+import dev.andrylat.vomelianchuk.finances.cardnumbervalidator.enums.PaymentSystem;
+import dev.andrylat.vomelianchuk.finances.cardnumbervalidator.exceptions.CardValidationException;
+import dev.andrylat.vomelianchuk.finances.cardnumbervalidator.exceptions.WrongPaymentSystemException;
 
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
 
-public class CardNumberValidatorConsoleIO implements ConsoleIO {
+public class CardNumberValidatorConsoleIO implements ConsoleIO<String> {
     private static final String HELLO_USER = "Hello! Enter card number for validation:";
     private static final String VALID_CARD_TEXT_BEGIN =  "\nCard is valid. Payment System is \"";
     private static final String VALID_CARD_TEXT_END =  "\"\n";
@@ -26,7 +27,7 @@ public class CardNumberValidatorConsoleIO implements ConsoleIO {
     @Override
     public String read() {
         promptToTheUser();
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
         return scanner.nextLine();
     }
 
@@ -57,7 +58,7 @@ public class CardNumberValidatorConsoleIO implements ConsoleIO {
     }
 
     private String getErrorsCardInvalid(CardValidationException e) {
-        StringBuilder descriptionErrors = new StringBuilder(INVALID_CARD_TEXT_BEGIN);
+        var descriptionErrors = new StringBuilder(INVALID_CARD_TEXT_BEGIN);
 
         List<String> errors = e.getErrorsMessage();
         for (String messageError : errors) {

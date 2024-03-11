@@ -1,5 +1,5 @@
-import dev.andrylat.vomelianchuk.finances.exceptions.DataMortgageCalculatorException;
-import dev.andrylat.vomelianchuk.finances.operations.MortgageCalculator;
+import dev.andrylat.vomelianchuk.finances.mortgagecalculator.exceptions.DataMortgageCalculatorException;
+import dev.andrylat.vomelianchuk.finances.mortgagecalculator.calculation.MortgageCalculator;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

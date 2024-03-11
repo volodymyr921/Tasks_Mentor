@@ -1,4 +1,4 @@
-package dev.andrylat.vomelianchuk.finances.dialog;
+package dev.andrylat.vomelianchuk.finances.common;
 
 public interface Dialog {
     void start();

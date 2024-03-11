@@ -1,6 +1,7 @@
-package dev.andrylat.vomelianchuk.finances.consoleutils;
+package dev.andrylat.vomelianchuk.finances.mortgagecalculator.consoleio;
 
-import dev.andrylat.vomelianchuk.finances.exceptions.DataMortgageCalculatorException;
+import dev.andrylat.vomelianchuk.finances.common.ConsoleIO;
+import dev.andrylat.vomelianchuk.finances.mortgagecalculator.exceptions.DataMortgageCalculatorException;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -9,7 +10,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class MortgageCalculatorConsoleIO implements ConsoleIO {
+public class MortgageCalculatorConsoleIO implements ConsoleIO<List<Double>> {
     private static final String TEXT_MONTHLY_PAYMENT =  "\nMonthly payment = ";
     private static final String ERROR_BEGIN =  "\nERROR: ";
     private static final String INCORRECT_DATA =  "Data must be numbers";
@@ -23,10 +24,11 @@ public class MortgageCalculatorConsoleIO implements ConsoleIO {
         MortgageCalculatorConsoleIO.input = input;
         MortgageCalculatorConsoleIO.output = output;
     }
+
     @Override
     public List<Double> read() {
         List<Double> listData = new ArrayList<>();
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
         try {
             for (String prompt : promptsInput) {
                 System.out.println(prompt);

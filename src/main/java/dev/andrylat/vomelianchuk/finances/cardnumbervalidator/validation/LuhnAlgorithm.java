@@ -1,6 +1,6 @@
-package dev.andrylat.vomelianchuk.finances.card_number_validation;
+package dev.andrylat.vomelianchuk.finances.cardnumbervalidator.validation;
 
-import dev.andrylat.vomelianchuk.finances.exceptions.CardValidationException;
+import dev.andrylat.vomelianchuk.finances.cardnumbervalidator.exceptions.CardValidationException;
 
 import java.util.List;
 

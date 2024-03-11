@@ -1,4 +1,4 @@
-package dev.andrylat.vomelianchuk.finances.exceptions;
+package dev.andrylat.vomelianchuk.finances.cardnumbervalidator.exceptions;
 
 public class WrongPaymentSystemException extends RuntimeException {
     private final String errorMessage;

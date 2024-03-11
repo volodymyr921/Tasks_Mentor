@@ -1,4 +1,4 @@
-package dev.andrylat.vomelianchuk.finances.exceptions;
+package dev.andrylat.vomelianchuk.finances.mortgagecalculator.exceptions;
 
 public class DataMortgageCalculatorException extends RuntimeException{
     private final String errorMessage;
