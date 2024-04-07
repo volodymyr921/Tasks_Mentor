@@ -1,8 +1,7 @@
 package dev.andrylat.vomelianchuk.finances.mortgagecalculator.calculation;
 
+import dev.andrylat.vomelianchuk.finances.mortgagecalculator.dto.MortgageCalculatorDTO;
 import dev.andrylat.vomelianchuk.finances.mortgagecalculator.exceptions.DataMortgageCalculatorException;
-
-import java.util.List;
 
 public class MortgageCalculator {
     private static final String INCORRECT_NUMBERS =  "The numbers are not correct";
@@ -12,21 +11,23 @@ public class MortgageCalculator {
     private double interestRate;
     private final double numberOfYears;
 
-    public MortgageCalculator(List<Double> dataMortgage) {
-        totalPrice = dataMortgage.get(0);
-        downPayment = dataMortgage.get(1);
-        interestRate = dataMortgage.get(2);
-        numberOfYears = dataMortgage.get(3);
+    public MortgageCalculator(MortgageCalculatorDTO calculatorDTO) {
+        this.totalPrice = calculatorDTO.getTotalPrice();
+        this.downPayment = calculatorDTO.getDownPayment();
+        this.interestRate = calculatorDTO.getInterestRate();
+        this.numberOfYears = calculatorDTO.getNumberOfYears();
     }
 
     public double calculateMonthlyPayment() {
         checkCorrectnessData();
-        double loanAmount = totalPrice - downPayment;
-        double numberOfMonths = numberOfYears * paymentsPerYear;
+        var loanAmount = totalPrice - downPayment;
+        var numberOfMonths = numberOfYears * paymentsPerYear;
         interestRate /= 100;
 
-        return loanAmount * (interestRate / paymentsPerYear) * Math.pow((1 + interestRate / paymentsPerYear), numberOfMonths) /
-                (Math.pow((1 + interestRate / paymentsPerYear), numberOfMonths) - 1);
+        var monthlyInterestRate = interestRate / paymentsPerYear;
+        var compoundFactor = Math.pow((1 + monthlyInterestRate), numberOfMonths);
+
+        return loanAmount * (monthlyInterestRate * compoundFactor) / (compoundFactor - 1);
     }
 
     private void checkCorrectnessData() {

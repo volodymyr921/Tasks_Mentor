@@ -7,11 +7,11 @@ import dev.andrylat.vomelianchuk.finances.cardnumbervalidator.exceptions.WrongPa
 import dev.andrylat.vomelianchuk.finances.cardnumbervalidator.validation.CardNumberValidator;
 
 public class CardNumberValidatorDialog implements Dialog {
-    static final String DESCRIPTION_ACTION = "Card Number Validation";
+    private static final String DESCRIPTION_ACTION = "Card Number Validation";
 
     @Override
     public void start() {
-        var consoleIO = new CardNumberValidatorConsoleIO(System.in, System.out);
+        var consoleIO = new CardNumberValidatorConsoleIO(input, output);
         var cardNumberAsString = consoleIO.read();
         try {
             var paymentSystem = new CardNumberValidator().validate(cardNumberAsString);

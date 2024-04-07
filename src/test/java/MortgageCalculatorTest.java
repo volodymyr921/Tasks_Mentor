@@ -1,3 +1,4 @@
+import dev.andrylat.vomelianchuk.finances.mortgagecalculator.dto.MortgageCalculatorDTO;
 import dev.andrylat.vomelianchuk.finances.mortgagecalculator.exceptions.DataMortgageCalculatorException;
 import dev.andrylat.vomelianchuk.finances.mortgagecalculator.calculation.MortgageCalculator;
 
@@ -20,8 +21,8 @@ public class MortgageCalculatorTest {
     })
     public void shouldCalculateMonthlyPayment_WhenDataIsCorrect(double totalPrice, double downPayment, double interestRate, double numberOfYears, double expected) {
         List<Double> dataMortgage = getListDataMortgage(totalPrice, downPayment, interestRate, numberOfYears);
-
-        assertEquals(expected, new MortgageCalculator(dataMortgage).calculateMonthlyPayment());
+        MortgageCalculatorDTO mortgageDTO = new MortgageCalculatorDTO(dataMortgage);
+        assertEquals(expected, new MortgageCalculator(mortgageDTO).calculateMonthlyPayment());
     }
 
     @ParameterizedTest
@@ -34,7 +35,8 @@ public class MortgageCalculatorTest {
     })
     public void shouldThrowException_WhenDataIsIncorrect(double totalPrice, double downPayment, double interestRate, double numberOfYears) {
         List<Double> dataMortgage = getListDataMortgage(totalPrice, downPayment, interestRate, numberOfYears);
-        MortgageCalculator calculator = new MortgageCalculator(dataMortgage);
+        MortgageCalculatorDTO mortgageDTO = new MortgageCalculatorDTO(dataMortgage);
+        MortgageCalculator calculator = new MortgageCalculator(mortgageDTO);
 
         assertThrows(DataMortgageCalculatorException.class, calculator::calculateMonthlyPayment);
     }

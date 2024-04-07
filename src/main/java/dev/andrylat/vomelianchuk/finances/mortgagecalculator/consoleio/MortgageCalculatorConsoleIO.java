@@ -17,12 +17,12 @@ public class MortgageCalculatorConsoleIO implements ConsoleIO<List<Double>> {
 
     private final String[] promptsInput = {"Input total price:", "Input down payment:", "Input  interest rate:", "Input number of years:"};
 
-    private static InputStream input;
-    private static PrintStream output;
+    private final InputStream input;
+    private final PrintStream output;
 
     public MortgageCalculatorConsoleIO(InputStream input, PrintStream output) {
-        MortgageCalculatorConsoleIO.input = input;
-        MortgageCalculatorConsoleIO.output = output;
+        this.input = input;
+        this.output = output;
     }
 
     @Override
