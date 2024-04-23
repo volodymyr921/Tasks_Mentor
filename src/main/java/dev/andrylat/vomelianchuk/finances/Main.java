@@ -5,11 +5,16 @@ import dev.andrylat.vomelianchuk.finances.common.Dialog;
 import dev.andrylat.vomelianchuk.finances.common.UnsupportedDialog;
 import dev.andrylat.vomelianchuk.finances.mortgagecalculator.dialog.MortgageCalculatorDialog;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class Main {
+    private final InputStream input = System.in;
+    private final PrintStream output = System.out;
+
     private static final String INITIAL_MESSAGE = "Enter the action number:";
     private static final String SEPARATOR = " - ";
     private static final String TEXT_ERROR_DATA_IS_NOT_NUMBER = "The data entered is not a number!";
@@ -24,7 +29,7 @@ public class Main {
         try {
             var choiceUser = getChoiceUser();
             var dialog = listDialogs.getOrDefault(choiceUser, unsupportedDialog);
-            dialog.start();
+            dialog.start(new Main().input, new Main().output);
         } catch (InputMismatchException e) {
             System.out.println(TEXT_ERROR_DATA_IS_NOT_NUMBER);
         }

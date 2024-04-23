@@ -4,7 +4,7 @@ import dev.andrylat.vomelianchuk.finances.mortgagecalculator.dto.MortgageCalcula
 import dev.andrylat.vomelianchuk.finances.mortgagecalculator.exceptions.DataMortgageCalculatorException;
 
 public class MortgageCalculator {
-    private static final String INCORRECT_NUMBERS =  "The numbers are not correct";
+    private static final String INCORRECT_NUMBERS_ERROR_MESSAGE =  "The numbers are not correct";
     private final static double paymentsPerYear = 12;
     private final double totalPrice;
     private final double downPayment;
@@ -32,7 +32,7 @@ public class MortgageCalculator {
 
     private void checkCorrectnessData() {
         if (totalPrice < 0 || downPayment < 0 || interestRate < 0 || numberOfYears <= 0 || (totalPrice - downPayment) < 0) {
-            throw new DataMortgageCalculatorException(INCORRECT_NUMBERS);
+            throw new DataMortgageCalculatorException(INCORRECT_NUMBERS_ERROR_MESSAGE);
         }
     }
 

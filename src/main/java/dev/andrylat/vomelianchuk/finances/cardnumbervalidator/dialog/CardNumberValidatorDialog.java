@@ -6,11 +6,14 @@ import dev.andrylat.vomelianchuk.finances.cardnumbervalidator.exceptions.CardVal
 import dev.andrylat.vomelianchuk.finances.cardnumbervalidator.exceptions.WrongPaymentSystemException;
 import dev.andrylat.vomelianchuk.finances.cardnumbervalidator.validation.CardNumberValidator;
 
+import java.io.InputStream;
+import java.io.PrintStream;
+
 public class CardNumberValidatorDialog implements Dialog {
     private static final String DESCRIPTION_ACTION = "Card Number Validation";
 
     @Override
-    public void start() {
+    public void start(InputStream input, PrintStream output) {
         var consoleIO = new CardNumberValidatorConsoleIO(input, output);
         var cardNumberAsString = consoleIO.read();
         try {

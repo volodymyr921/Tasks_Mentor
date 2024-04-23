@@ -4,8 +4,6 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 public interface Dialog {
-    InputStream input = System.in;
-    PrintStream output = System.out;
-    void start();
+    void start(InputStream inputStream, PrintStream outputStream);
     String getDescription();
 }

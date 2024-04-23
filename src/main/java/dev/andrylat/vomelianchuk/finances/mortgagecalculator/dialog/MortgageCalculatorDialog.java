@@ -6,18 +6,19 @@ import dev.andrylat.vomelianchuk.finances.mortgagecalculator.consoleio.MortgageC
 import dev.andrylat.vomelianchuk.finances.mortgagecalculator.exceptions.DataMortgageCalculatorException;
 import dev.andrylat.vomelianchuk.finances.mortgagecalculator.calculation.MortgageCalculator;
 
-import java.util.List;
+import java.io.InputStream;
+import java.io.PrintStream;
 
 public class MortgageCalculatorDialog implements Dialog {
     private static final String DESCRIPTION_ACTION = "Mortgage Calculation";
 
     @Override
-    public void start() {
+    public void start(InputStream input, PrintStream output) {
         var consoleIO = new MortgageCalculatorConsoleIO(input, output);
         try {
-            List<Double> dataMortgage = consoleIO.read();
-            MortgageCalculatorDTO mortgageDTO = new MortgageCalculatorDTO(dataMortgage);
-            double monthlyPayment = new MortgageCalculator(mortgageDTO).calculateMonthlyPayment();
+            var dataMortgage = consoleIO.read();
+            var mortgageDTO = new MortgageCalculatorDTO(dataMortgage);
+            var monthlyPayment = new MortgageCalculator(mortgageDTO).calculateMonthlyPayment();
             consoleIO.printResult(monthlyPayment);
         } catch (DataMortgageCalculatorException e) {
             consoleIO.printErrors(e);
